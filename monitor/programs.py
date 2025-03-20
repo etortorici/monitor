@@ -7,7 +7,7 @@ from PySide6.QtWidgets import QApplication
 
 def lakeshore():
     """Launch Server"""
-    server = GpibServer(None, None)#int(340))
+    server = GpibServer(None, int(340))
     server_thread = Thread(target=server.run, args=())
     server_thread.daemon = True
     server_thread.start()
