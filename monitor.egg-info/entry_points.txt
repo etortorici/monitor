@@ -1,0 +1,2 @@
+[console_scripts]
+lakeshore = monitor.programs:lakeshore

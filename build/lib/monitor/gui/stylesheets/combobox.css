@@ -1,0 +1,19 @@
+QComboBox {
+    color: #FFFFFF;
+    background-color: #000000;
+    font: bold 18px;
+    border-width: 3px; border-style: solid;
+    border-color: rgb(226, 213, 0) rgb(185, 161, 0) rgb(185, 161, 0) rgb(226, 213, 0);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+QComboBox:disabled {
+    color: #999999;
+    background-color: #4B4B40;
+    font: bold 18px;
+    border-width: 3px; border-style: solid;
+    border-color: rgb(226, 213, 0) rgb(185, 161, 0) rgb(185, 161, 0) rgb(226, 213, 0);
+    padding: 10px;
+    border-radius: 3px;
+}

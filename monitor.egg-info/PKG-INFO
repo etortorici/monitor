@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: monitor
+Version: 0.1
+Summary: Monitor LakeShore
+Author-email: Teddy Tortorici <edward.tortorici@colorado.edu>
+License: GPL
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pyside6
+Requires-Dist: pyvisa
+
+# Set up and install
+
+- Create and activate a virtual environment.
+
+- `python -m pip install -U pip`
+
+- `cd` into repository
+
+- `pip install -U .`
+
+# Launch monitor
+
+With the virtual environment activated: `lakeshore`

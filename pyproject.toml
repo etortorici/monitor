@@ -34,4 +34,7 @@ license = { text = "GPL" }
 lakeshore = "monitor.programs:lakeshore"
 
 [tool.setuptools.packages.find]
-include = ["monitor", "monitor.*"]
+include = ["monitor", "monitor.communication"]
+
+[tool.setuptools.package-data]
+"monitor" = ["gui/**/*"]

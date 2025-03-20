@@ -8,12 +8,11 @@ import sys
 import threading
 from pathlib import Path
 import monitor.get as get
-from monitor.communication.socket_client import shutdown_command
-from monitor.communication.devices.lakeshore import Client as LakeShore
 from PySide6.QtWidgets import (QMainWindow, QApplication, QMessageBox, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit,
                                QLabel, QRadioButton, QButtonGroup, QSpinBox, QDoubleSpinBox, QPushButton)
 from PySide6.QtCore import Slot, Signal, Qt
 from PySide6.QtGui import QFont
+from monitor.communication.socket_client import shutdown_command
 
 
 STYLESHEETS = Path(__file__).resolve().parent / "gui" / "stylesheets"
@@ -151,13 +150,11 @@ class VoltageWidget(QDoubleSpinBox):
 
 
 class MainWidget(QWidget):
-    def __init__(self, model_number=340):
+    def __init__(self):
         super(MainWidget, self).__init__()
 
         self.run_thread = threading.Thread(target=self.run)
         self.run_thread.daemon = True
-
-        self.lakeshore = LakeShore(model_number)
 
         main_layout = QHBoxLayout(self)
 
@@ -169,46 +166,38 @@ class MainWidget(QWidget):
         for key in display_keys:
             display_layout.addLayout(self.displays[key].row_layout)
 
-        # bottom_row = QHBoxLayout()
-        # averaging_box = AveragingWidget(self)
-        # voltage_box = VoltageWidget(self)
-        # label = QLabel("press ENTER to set")
-        # 
-        # bottom_row.addWidget(label)
-        # bottom_row.addWidget(averaging_box.label)
-        # bottom_row.addWidget(averaging_box)
-        # bottom_row.addWidget(voltage_box.label)
-        # bottom_row.addWidget(voltage_box)
-        # 
-        # display_layout.addLayout(bottom_row)
-        # 
-        # self.frequency_options = FrequencyWidget(self)
-        # 
+        bottom_row = QHBoxLayout()
+        averaging_box = AveragingWidget(self)
+        voltage_box = VoltageWidget(self)
+        label = QLabel("press ENTER to set")
+
+        bottom_row.addWidget(label)
+        bottom_row.addWidget(averaging_box.label)
+        bottom_row.addWidget(averaging_box)
+        bottom_row.addWidget(voltage_box.label)
+        bottom_row.addWidget(voltage_box)
+
+        display_layout.addLayout(bottom_row)
+
+        self.frequency_options = FrequencyWidget(self)
+
         main_layout.addLayout(display_layout)
-        # main_layout.addLayout(self.frequency_options.col_layout)
+        main_layout.addLayout(self.frequency_options.col_layout)
 
         self.setLayout(main_layout)
         self.run_thread.start()
 
-    def update_displays(self, unit: str = "K"):
-        unit = unit.upper()
-        temperature_a = self.lakeshore.read_temperature("A", unit)
-        temperature_b = self.lakeshore.read_temperature("B", unit)
-        heater = self.lakeshore.read_heater_output()
-        heater_range = self.lakeshore.read_heater_range()
-        setpoint = self.lakeshore.read_setpoint()
-        ramp_rate = self.lakeshore.read_ramp_speed()
-
-        self.displays["Temperature A"].setText(f"{temperature_a:.2f} {unit}")
-        self.displays["Temperature B"].setText(f"{temperature_b:.2f} {unit}")
-        self.displays["Heater"].setText(f"{heater}% of {heater_range:.4f} W")
-        self.displays["Setpoint"].setText(f"{setpoint:.2f} K")
-        self.displays["Ramp rate"].setText(f"{ramp_rate} K/min")
+    def update_displays(self, frequency: str, capacitance: str, loss: str, voltage: str, error: str = ""):
+        self.displays["Frequency"].setText(frequency + " Hz")
+        self.displays["Capacitance"].setText(capacitance + " pF")
+        self.displays["Loss Tangent"].setText(loss)
+        self.displays["RMS Voltage"].setText(voltage + " V")
+        self.displays["Error"].setText(error)
 
     def run(self):
         while True:
             # front_panel = self.bridge.read_front_panel_full()
-            self.update_displays()
+            # self.update_displays(*front_panel)
             pass
 
 
@@ -263,13 +252,6 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    from monitor.communication.server import GpibServer
-    from threading import Thread    
-    server = GpibServer(None, None)#int(340))
-    server_thread = Thread(target=server.run, args=())
-    server_thread.daemon = True
-    server_thread.start()
-
     app = QApplication(sys.argv)
 
     main_window = MainWindow()

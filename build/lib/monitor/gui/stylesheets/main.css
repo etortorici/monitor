@@ -1,0 +1,166 @@
+QMainWindow {
+    background: #2B2B20;
+    color: #FFFFFF;
+}
+
+QMenuBar {
+    background: #1B1B10;
+    color: #FFFFFF;
+}
+
+QMenuBar::item:selected {
+    background: #3F3F3B;
+    color: #FFFFFF
+}
+
+QMenu {
+    background: #2F2F2B;
+    color: #FFFFFF;
+}
+
+QMenu::item:selected {
+    background: #4F4F4B;
+    color: #FFFFFF;
+}
+
+QMenu::separator {
+    height: 2px;
+    background: #F0F0E8;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+QToolBar QToolButton:hover {
+    background: #4B4B5F;
+}
+
+QTextEdit {
+    border: 0px
+}
+
+QTabWidget::tab-bar {
+    left: 20px; /* move to the right by 5px */
+}
+
+QTabBar::tab {
+    background: #3B3B30;
+    color: #FFFFFF;
+    border: 2px solid #2B2B20;
+    border-bottom-color: #2B2B20;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 12ex;
+    padding: 2px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid #000000;
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px; /* make non-selected tabs look smaller */
+}
+
+QPushButton {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #3B3B30 #000000 #000000 #3B3B30;
+    min-width: 5em;
+    padding: 6px;
+}
+
+QPushButton:pressed {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #000000 #3B3B30 #3B3B30 #000000;
+    min-width: 5em;
+    padding: 6px;
+}
+
+QPushButton:disabled {
+    color: #999999;
+    background-color: #4B4B40;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #5B5B50 #222222 #222222 #5B5B50;
+    min-width: 5em;
+    padding: 6px;
+}
+
+QPushButton:default {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #3B3B30 #000000 #000000 #3B3B30;
+    min-width: 5em;
+    padding: 4px;
+    font: bold;
+}
+
+QPushButton:default:pressed {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #000000 #3B3B30 #3B3B30 #000000;
+    min-width: 5em;
+    padding: 4px;
+    font: bold;
+}
+
+QDialog {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+}
+
+QFileDialog {
+    color: #FFFFFF;
+    background-color: #2B2B20;
+}
+
+QLabel {
+    color: #FFFFFF;
+}
+
+QComboBox {
+    color: #FFFFFF;
+    background-color: #000000;
+    border-width: 1px; border-style: solid;
+    border-color: #777777 #333333 #333333 #777777;
+}
+
+QLineEdit {
+    color: #FFFFFF;
+    background-color: #000000;
+    border-width: 1px; border-style: solid;
+    border-color: #777777 #333333 #333333 #777777;
+}
+
+QSpinBox {
+    color: #FFFFFF;
+    background-color: #000000;
+    border-width: 1px; border-style: solid;
+    border-color: #777777 #333333 #333333 #777777;
+}
+
+QDoubleSpinBox {
+    color: #FFFFFF;
+    background-color: #000000;
+    border-width: 1px; border-style: solid;
+    border-color: #777777 #333333 #333333 #777777;
+}
